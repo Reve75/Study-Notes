@@ -1,3 +1,8 @@
+## github 连不上问题
+
+unset remote origin proxy
+unset httpserver
+unset httpsserver
 ## 远程repository改名
 
 改了github repository名称以后，需要进本地repository的git config执行
