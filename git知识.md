@@ -11,3 +11,17 @@ We can remove this folder using the rm -rf command :
 rm -rf .git/
 
 https://careerkarma.com/blog/git-undo-git-init/
+
+## adding a local repository to github repository
+
+https://docs.github.com/en/get-started/importing-your-projects-to-github/importing-source-code-to-github/adding-locally-hosted-code-to-github
+
+git init -b main
+
+git add . && git commit -m "initial commit"
+
+git remote add origin  <REMOTE_URL> 
+
+git remote -v
+
+git push -u origin main
