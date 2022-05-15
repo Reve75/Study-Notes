@@ -9,3 +9,5 @@ git remote set-url origin 新的git url
 The Git command line does not give us a “git init undo” command. This is because undoing a git init operation is as simple as removing the .git/ folder.
 We can remove this folder using the rm -rf command :
 rm -rf .git/
+
+https://careerkarma.com/blog/git-undo-git-init/
