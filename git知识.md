@@ -25,3 +25,13 @@ git remote add origin  <REMOTE_URL>
 git remote -v
 
 git push -u origin main
+
+## if unsure whether main branch is called master or main
+
+git show-ref 
+
+can show whether heads is master or main
+
+if master, use git push -u origin master
+
+if main, use git push -u origin main
