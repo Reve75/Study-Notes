@@ -40,3 +40,7 @@ can show whether heads is master or main
 if master, use git push -u origin master
 
 if main, use git push -u origin main
+
+## forgotten remote origin and want to view
+
+git remote -v
