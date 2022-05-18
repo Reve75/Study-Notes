@@ -44,3 +44,9 @@ if main, use git push -u origin main
 ## forgotten remote origin and want to view
 
 git remote -v
+
+## use command line to add, commit and push changes from local file to remote branch
+
+git add -A
+git commit "message"
+git push -u origin main
