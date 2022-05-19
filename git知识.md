@@ -41,6 +41,8 @@ if master, use git push -u origin master
 
 if main, use git push -u origin main
 
+https://stackoverflow.com/questions/4181861/message-src-refspec-master-does-not-match-any-when-pushing-commits-in-git
+
 ## forgotten remote origin and want to view
 
 git remote -v
