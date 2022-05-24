@@ -1,44 +1,5 @@
-## 小程序准备工作
 
-https://blog.csdn.net/rolan1993/article/details/89353043?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-9-89353043-blog-113735330.pc_relevant_antiscanv2&spm=1001.2101.3001.4242.6&utm_relevant_index=12
-
-1) 小程序账号 + 微信开发者工具 + 前端代码 + 后端数据 = 微信小程序
-2) Idea + Java + SpringBoot = 后端接口定义
-3) 腾讯云服务器 + Tomcat + 后端接口定义 = 可访问的后端服务接口
-4) 域名 + IP + SSL证书 + 备案 = 合法后端接口访问路径
-
-后端主要是提供给小程序数据接口，让小程序各个页面都能有排行榜数据展示，这里我提供的是http接口，返回的Json格式的字符串。使用的语言是Java，使用的框架是SpringBoot，将最终的java代码打包成war包部署在云主机上的web服务器Tomcat中，Tomcat就可以自动的将通过url过来的请求分发到我的程序代码的处理逻辑中，处理完请求拿到相应的数据则以Json字符串的格式返回。
-
-流程图:
-
-![流程图] (images/workflow.png)
-
-https://blog.csdn.net/weixin_44420767/article/details/122179413?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1-122179413-blog-113735330.pc_relevant_antiscanv2&spm=1001.2101.3001.4242.2&utm_relevant_index=4
-
-https://blog.csdn.net/weixin_44420767/article/details/122179413
-
-- 第一步：在阿里云买一个云服务器（三个月以上）（建议linux实例）
-- 第二步：配置安全组（添加8080,3306，22等端口对外开放）
-- 第三步：在云服务器上安装tomcat，mysql和jdk。（需要配置环境变量）
-- 第四步：将maven的java项目打包为war包通过xftp传到tomcat的webapps目录下。
-- 第四步：运行tomcat后，可以使用http://域名/8080就可以访问
-- 第五步：在阿里云买一个域名
-- 第六步：将域名与服务器公网IP进行解析
-- 第七步：进行域名备案
-- 第八步：将https://域名添加到微信小程序项目信息的域名配置中（一个月只能改五次）
-
-
----
-
-## 关于springboot
-
-Java Spring Boot (Spring Boot) is a tool that makes developing web application and microservices with Spring Framework faster and easier through three core capabilities: Autoconfiguration. An opinionated approach to configuration. The ability to create standalone applications.
-
-### springboot介绍
-
-https://www.cnblogs.com/luzhanshi/p/10592209.html
-
-### IDEA插件
+## IDEA插件
 
 https://zhuanlan.zhihu.com/p/439934300
 
@@ -53,7 +14,6 @@ https://www.jianshu.com/p/28e1aedb4819
 https://blog.csdn.net/weixin_45897761/article/details/107893291
 
 使用idea安装springboot框架
-
 ---
 
 ## 关于maven
@@ -136,23 +96,7 @@ https://www.thegeekdiary.com/mac-terminal-vim-editor-commands/
 https://blog.csdn.net/ma950924/article/details/103407871
 
 vim文件尾部要以fi结尾
-
-
-## 搭建微信小程序服务器
-
-https://juejin.cn/post/6844903640310743048
-
-## 使用 Node + Express + MongoDB 开发项目的后端接口
-
-https://blog.csdn.net/qq_43652492/article/details/123950520?spm=1001.2101.3001.6650.2&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-2-123950520-blog-113735330.pc_relevant_antiscanv2&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-2-123950520-blog-113735330.pc_relevant_antiscanv2&utm_relevant_index=5
-
-https://blog.csdn.net/qq_43652492/article/details/123950520
-
-## nodejs后端
-
-https://blog.csdn.net/weixin_44611706/article/details/107747606
-
-直接在腾讯云使用小程序nodejs模板
+---
 
 
 ## MyBatis
@@ -203,6 +147,30 @@ https://its201.com/article/BlackPlus28/108218098
 https://www.songbingjia.com/nginx/show-199590.html
 
 有比较复杂的mapper
+
+https://blog.csdn.net/weixin_51080803/article/details/118926604
+
+mybatis mysql maven 项目
+
+https://blog.csdn.net/qq_41962928/article/details/79854689
+
+使用MyBatis+maven连接数据库
+
+https://www.cnblogs.com/homejim/p/9613205.html
+
+mybatis maven项目
+
+https://blog.csdn.net/weixin_43823808/article/details/114142592
+
+MyBatis——IDEA中使用Maven搭建MyBatis框架，让它跑起来
+
+https://blog.csdn.net/weixin_45802810/article/details/118632039
+
+完整配置+测试
+
+https://blog.csdn.net/weixin_33770878/article/details/91633134
+
+在web项目中应用Mybatis
 ---
 
 
@@ -232,3 +200,18 @@ IDEA搭建mybatis框架的maven项目
 https://www.superweb999.com/article/190132.html
 
 maven mybatis 项目配置
+---
+
+## mybatis web项目
+
+https://blog.csdn.net/brok1n/article/details/66973449
+
+含有webapp文件夹，web-inf
+---
+
+# 非常详细的mybatis应用案例
+
+https://zhuanlan.zhihu.com/p/351830443
+---
+
+
