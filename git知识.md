@@ -50,5 +50,5 @@ git remote -v
 ## use command line to add, commit and push changes from local file to remote branch
 
 git add -A
-git commit "message"
+git commit -m "message"
 git push -u origin main
