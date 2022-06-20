@@ -1,0 +1,188 @@
+## 微信小程序地图标记点，点击标记点显示详细信息源码加效果图
+
+### 全靠这个做了小程序的点击显示详情效果 - 非常好的资源。不过这个用cover-view写，202206已经不需要用cover-view了，地图用view就好。cover-view和view的主要差别在于，在真机上，cover-view无法实现scroll。而view可以。
+
+https://blog.csdn.net/qq_35713752/article/details/85761711
+
+- 学习点：弹出底层弹框，收起底层弹框
+- 用view的方式显示图片，文字
+
+
+## 使用腾讯位置服务计算距离
+
+https://blog.csdn.net/weixin_54804804/article/details/121651652
+
+```javascript
+    qqmapsdk.geocoder({
+      address: e.detail.value.dest, //传入地址（  address: '北京故宫', ）
+      success: function (res) {
+        console.log(res);
+        var path = res.result.location; //接口调用成功，取得地址坐标！！
+        var strLocation = path.lat + ',' + path.lng;
+        //调用距离计算接口
+        qqmapsdk.calculateDistance({
+          //mode: 'driving',//可选值：'driving'（驾车）、'walking'（步行），不填默认：'walking',可不填
+          mode:'walking',
+          //from参数不填默认当前地址
+          //获取表单提交的经纬度并设置from和to参数（示例为string格式）
+          from: '', //若起点有数据则采用起点坐标，若为空默认当前地址
+          to: strLocation, //终点坐标
+          success: function (res) { 
+              console.log(res);
+            var res = res.result;
+            var dis = [];
+            for (var i = 0; i < res.elements.length; i++) {
+              dis.push(res.elements[i].distance); //将返回数据存入dis数组，
+            }
+            _this.setData({ //设置并更新distance数据
+              distance: dis
+            });
+          },
+          fail: function (error) {
+            console.error(error);
+          },
+          complete: function (res) {
+            console.log(res);
+          }
+        });
+      }
+    })
+  },
+
+```
+
+### 配好腾讯位置服务的key以后，引用qqmapdsk以后，用qqmapsdk.calculateDistance计算距离
+
+https://codeantenna.com/a/2n16ELq7Yd
+
+### 另一种写法
+
+```javascript
+demo.calculateDistance({
+            to: [{
+
+                latitude: 39.917990, //商家的纬度
+                longitude: 116.397027, //商家的经度
+            }],
+            success: function(res) {
+                let hw = res.result.elements[0].distance //拿到距离(米)
+                if (hw && hw !== -1) { //拿到正确的值
+                    //转换成公里
+                    hw = (hw / 2 / 500).toFixed(2) + '公里'
+                } else {
+                    hw = "距离太近或请刷新重试"
+                }
+          
+                console.log('腾讯地图计算距离商家' + hw);
+            }
+        });
+```
+
+https://cloud.tencent.com/developer/article/1699637
+
+### 另一种写法
+
+```javascript
+qqmapsdk.calculateDistance({
+          
+            from: '', //若起点有数据则采用起点坐标，若为空默认当前地址
+            to: that.data.lat_dest+','+that.data.lng_dest, //终点坐标
+            success: function(res) {//成功后的回调
+              
+              var distance = res.result.elements[0].distance;
+              console.log('distance==',distance);
+               
+            },
+            fail: function(error) {
+              console.error(error);
+            },
+            complete: function(res) {
+              console.log(res);
+            }
+```
+
+## 微信小程序路线规划导航并唤醒第三方导航app
+
+https://blog.51cto.com/jackiehao/3780348
+
+```javascript
+wx.getLocation({
+ type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+ success (res) {
+   const latitude = res.latitude
+   const longitude = res.longitude
+   wx.openLocation({
+     latitude,
+     longitude,
+     scale: 18
+   })
+ }
+})
+
+```
+
+## 小程序缩放视野展示所有经纬度---includePoints
+
+https://blog.csdn.net/qq_38475901/article/details/122714250
+
+```javascript
+getData() {
+	//我这里用result表示从后台获取到的数据,result为对象数组。
+	let {mapCtx} = this.data
+    let points = []
+    result.forEach(item => {
+    	let obj = {
+          latitude: item.lat,
+          longitude: item.lng
+        }
+        points.push(obj)
+    })
+  	mapCtx.includePoints({
+       padding:[100,100,100,100], 
+       points,
+    })
+```
+
+https://developers.weixin.qq.com/community/develop/doc/000ae676f00bb0bd20ca83cf056c00
+
+还是以上方式，需要用js代码实现
+
+https://www.jianshu.com/p/0c45c1d04da6
+
+不能直接用属性include-points='{{points}}',可以用MapContext.includePoints()
+
+```javascript
+MapContext.includePoints({
+        points:points,
+        padding:[100,100,100,100],//被你发现了,可以设置上右下左的间距(px).不其实只能用第一个值100.
+        success: function (e) {
+          console.log(e)
+        }
+      })
+```
+
+## moveToLocation
+
+https://developers.weixin.qq.com/community/develop/doc/0004a6e3a94d1032c9e98717651000
+
+https://www.izhangbo.cn/question/53.html
+
+```javascript
+const mapCtx = wx.createMapContext("kwyymap",this);
+    mapCtx.moveToLocation({
+        latitude:latitude,
+        longitude:longitude,
+        success:() => {console.log('我移过去了')},
+    });
+```
+
+## cover-view (地图已不需要使用cover-view,这个用起来没有view好)
+
+https://developers.weixin.qq.com/miniprogram/dev/component/cover-view.html
+
+## z-index
+
+https://blog.51cto.com/u_15047484/4083529
+
+z-index 对于地图是可以用的，但是如果是cover-view，则会显示在view之上，不管z-index设置为多少
+
