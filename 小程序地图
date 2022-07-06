@@ -186,3 +186,146 @@ https://blog.51cto.com/u_15047484/4083529
 
 z-index 对于地图是可以用的，但是如果是cover-view，则会显示在view之上，不管z-index设置为多少
 
+## map组件标注callout与label简单用法
+
+https://www.cxyzjd.com/article/weixin_43569405/110639378
+
+## 微信小程序map组件请求的markers数据无法渲染
+
+微信小程序map组件的markers属性是通过后端异步请求到数据后设置的，结果就导致了微信底层渲染出错。
+
+这个问题确实有，用下面的方法解决了。
+
+https://blog.csdn.net/xyphf/article/details/90416058
+
+在xml里面用wx：if等待markers赋值以后渲染地图
+
+## 多个标记点怎样能全部显示在视野内
+
+https://developers.weixin.qq.com/community/develop/doc/000ae676f00bb0bd20ca83cf056c00
+
+```javascript
+that.mapCtx = wx.createMapContext('mapDom'); //创建初始地图
+let includePointsData = []
+for (let i = 0; i < locationsData.length; i++) {
+  includePointsData.push({
+    latitude: locationsData[i].lat,
+    longitude:locationsData[i].lng
+  })
+}
+// 显示所有标记点
+that.mapCtx.includePoints({
+  padding: [100, 80, 100, 80],
+  points: includePointsData //放入所有坐标轴的数组   并引用此方法
+})
+```
+
+https://www.cnblogs.com/fps2tao/p/11576154.html
+
+```xml
+<map 
+id="myMap" 
+style="width: {{mapWidth}}rpx; height: {{mapHeight}}rpx;" latitude="{{latitude}}" 
+longitude="{{longitude}}" 
+markers="{{markers}}" 
+show-location 
+bindmarkertap="selectMarket" 
+include-points="{{markers}}" 
+bindmarkertap="toaddress"
+>
+</map>
+```
+
+## 微信小程序map组件 markers 展示当前位置&&修改标记点图标
+
+https://www.365seal.com/y/wWpe96w7pG.html
+
+用的是方法2
+
+## 自定义map组件标记点markers（兼容苹果和安卓）
+
+https://blog.csdn.net/cbb_2313/article/details/116586608
+
+markers,callout,label都有，用的是这个方式写的markers，提到了label和callout的差别
+
+## 地图的一些使用注意事项
+
+https://www.bbsmax.com/A/ke5jP7Wozr/
+
+## 地图定位（使用腾讯位置服务插件）
+
+https://blog.csdn.net/j1231230/article/details/112352787
+
+https://blog.csdn.net/qq_34151837/article/details/122316386
+
+引用腾讯位置服务
+
+## 经纬度加逆解析得到详细地址 （腾讯位置服务）
+
+https://www.yisu.com/zixun/160850.html
+
+```javascript
+wx.getLocation({
+  type: 'wgs84',
+  success: function (res) {
+  //2、根据坐标获取当前位置名称，显示在顶部:腾讯地图逆地址解析
+  qqmapsdk.reverseGeocoder({
+   location: {
+   latitude: res.latitude,
+   longitude: res.longitude
+   },
+   success: function (addressRes) {
+   // 显示位置
+   var address = addressRes.result.formatted_addresses.recommend;
+   console.log(address);
+   that.setData({ 
+    latitude: res.latitude, 
+    longitude: res.longitude,
+    addressNow: address
+   })
+   }
+  })
+  },
+  fail: function () {
+  console.log("调取失败")
+  }
+ })
+ },
+ ```
+
+## 小程序坐标系转换 wechat-Coordinate
+
+ https://blog.csdn.net/qq_45919328/article/details/107539338
+
+## 腾讯位置服务前端定位和位置标注的开发实录
+
+https://my.oschina.net/lockdatav/blog/4945815
+
+https://lockdatav.blog.csdn.net/article/details/113412823#1_177
+
+两个链接内容一样，排版不一样，第二个排版更容易读
+
+没仔细看，应该不错
+
+腾讯地图加载；
+自动定位；
+信息点(POINTS)标注maker；
+计算标注点之间的距离；
+导航跳转链接API接口；
+街道与卫星地图切换控件；
+缩放控件；
+
+## map 组件 如何给自定义气泡（customCallout）添加事件
+
+https://developers.weixin.qq.com/community/develop/doc/0006c48dbe052000fb6b4033651800
+
+map组件上添加bindcallouttap
+
+## 微信小程序地图标记点，点击标记点显示详细信息源码加效果图
+
+https://blog.csdn.net/qq_35713752/article/details/85761711
+
+最好的代码。参考的这个。非常全面而且好用。
+
+
+

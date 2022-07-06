@@ -238,3 +238,97 @@ And also succeed your number with an L for Long or a D for Double for static ini
 
 Like, -26.2041028D for Double.
 
+## SpringBoot 启动类 @SpringBootApplication 注解 以及执行流程
+
+https://blog.csdn.net/qq_28289405/article/details/81302498
+
+@ComponentScan这个注解在Spring中很重要，它对应XML配置中的元素，@ComponentScan的功能其实就是自动扫描并加载符合条件的组件（比如@Component和@Repository等）或者bean定义，最终将这些bean定义加载到IoC容器中。
+
+@EnableAutoConfiguration 简单概括一下就是，借助@Import的支持，收集和注册特定场景相关的bean定义。
+
+@EnableScheduling是通过@Import将Spring调度框架相关的bean定义都加载到IoC容器。
+@EnableMBeanExport是通过@Import将JMX相关的bean定义加载到IoC容器。
+
+@EnableAutoConfiguration自动配置的魔法骑士就变成了：从classpath中搜寻所有的META-INF/spring.factories配置文件，并将其中org.springframework.boot.autoconfigure.EnableutoConfiguration对应的配置项通过反射（Java Refletion）实例化为对应的标注了@Configuration的JavaConfig形式的IoC容器配置类，然后汇总为一个并加载到IoC容器。
+
+## Adding headers when using httpClient.GetAsync
+
+https://stackoverflow.com/questions/29801195/adding-headers-when-using-httpclient-getasync
+
+没试过，没仔细看
+
+## Spring request parameters
+
+https://www.baeldung.com/spring-request-param
+
+```java
+@GetMapping("/api/foos")
+@ResponseBody
+public String getFoos(@RequestParam(required = false) String id) { 
+    return "ID: " + id;
+}
+
+@PostMapping("/api/foos")
+@ResponseBody
+public String addFoo(@RequestParam(name = "id") String fooId, @RequestParam String name) { 
+    return "ID: " + fooId + " Name: " + name;
+}
+```
+
+## Differences between @RequestParam and @PathVariable annotations in Spring MVC
+
+https://javarevisited.blogspot.com/2017/10/differences-between-requestparam-and-pathvariable-annotations-spring-mvc.html#axzz7UmKDSftk
+
+For example, if the incoming HTTP request to retrieve a book on topic "Java" is http://localhost:8080/shop/order/1001/receipts?date=12-05-2017, then you can use the @RequestParam annotation to retrieve the query parameter date and you can use @PathVariable to extract the orderId i.e. "1001" as shown below:
+
+```java
+@RequestMapping(value="/order/{orderId}/receipts", method = RequestMethod.GET)
+public List listUsersInvoices( @PathVariable("orderId") int order,
+ @RequestParam(value = "date", required = false) Date dateOrNull) {
+...
+}
+```
+
+Read more: https://javarevisited.blogspot.com/2017/10/differences-between-requestparam-and-pathvariable-annotations-spring-mvc.html#ixzz7YEySxKVj
+
+### Spring @RequestParam vs @PathVariable Annotations
+
+https://www.baeldung.com/spring-requestparam-vs-pathvariable
+
+https://www.baeldung.com/spring-request-param
+
+https://stackoverflow.com/questions/12296642/is-it-possible-to-have-empty-requestparam-values-use-the-defaultvalue
+
+
+## JSON Parameters with Spring MVC
+
+https://www.baeldung.com/spring-mvc-send-json-parameters#:~:text=Send%20JSON%20Parameter%20in%20GET,parameter%20as%20a%20simple%20string.
+
+```java
+@GetMapping("/get")
+@ResponseBody
+public Product getProduct(@RequestParam String product) throws JsonMappingException, JsonProcessingException {
+    Product prod = objectMapper.readValue(product, Product.class);
+    return prod;
+}
+```
+
+## Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported for @RequestBody MultiValueMap
+
+https://stackoverflow.com/questions/33796218/content-type-application-x-www-form-urlencodedcharset-utf-8-not-supported-for
+
+The problem is that when we use application/x-www-form-urlencoded, Spring doesn't understand it as a RequestBody. So, if we want to use this we must remove the @RequestBody annotation.
+
+```java
+@RequestMapping(value = "/{email}/authenticate", method = RequestMethod.POST,
+        consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, 
+        produces = {MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+public @ResponseBody  Representation authenticate(@PathVariable("email") String anEmailAddress, MultiValueMap paramMap) throws Exception {
+   if(paramMap == null && paramMap.get("password") == null) {
+        throw new IllegalArgumentException("Password not provided");
+    }
+    return null;
+}
+
+```
+

@@ -76,6 +76,26 @@ public static String timeStamp2Date(String seconds,String format) {
     }  
 ```
 
+https://stackoverflow.com/questions/7492423/how-can-i-convert-a-timestamp-into-either-date-or-datetime-object
+
+```java
+public class DateTest {
+
+    public static void main(String[] args) {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        Date date = new Date(timestamp.getTime());
+
+        // S is the millisecond
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy' 'HH:mm:ss:S");
+
+        System.out.println(simpleDateFormat.format(timestamp));
+        System.out.println(simpleDateFormat.format(date));
+    }
+}
+```
+
+
+
 ### Java Program to Convert TimeStamp to Date
 
 https://www.geeksforgeeks.org/java-program-to-convert-timestamp-to-date/
@@ -88,4 +108,113 @@ Timestamp ts
         // constructor
         Date date = new Date(ts.getTime());
 ```
+
+https://www.baeldung.com/java-datetimeformatter
+
+```java
+String timeColonPattern = "hh:mm:ss a";
+DateTimeFormatter timeColonFormatter = DateTimeFormatter.ofPattern(timeColonPattern);
+LocalTime colonTime = LocalTime.of(17, 35, 50);
+System.out.println(timeColonFormatter.format(colonTime));
+```
+
+###  时间戳转换成时间
+
+https://www.runoob.com/java/date-timestamp2date.html
+
+```java
+public class Main{
+    public static void main(String[] args){
+        Long timeStamp = System.currentTimeMillis();  //获取当前时间戳
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String sd = sdf.format(new Date(Long.parseLong(String.valueOf(timeStamp))));      // 时间戳转换成时间
+        System.out.println("格式化结果：" + sd);
+ 
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy 年 MM 月 dd 日 HH 时 mm 分 ss 秒");
+        String sd2 = sdf2.format(new Date(Long.parseLong(String.valueOf(timeStamp))));
+        System.out.println("格式化结果：" + sd2);
+   }
+}
+```
+
+用的是这个方法
+
+### Convert LocalDateTime to Timestamp & Vice Versa
+
+https://www.javaprogramto.com/2021/11/java-8-convert-localdatetime-to.html
+
+```java
+LocalDate localDate = LocalDate.now();
+		
+Timestamp timestamp = Timestamp.valueOf(localDate.atStartOfDay());
+```
+
+## How to round a number to n decimal places in Java
+
+https://stackoverflow.com/questions/153724/how-to-round-a-number-to-n-decimal-places-in-java
+
+```java
+(double)Math.round(value * 100000d) / 100000d
+```
+https://mkyong.com/java/how-to-round-double-float-value-to-2-decimal-points-in-java/#mathround
+
+```java
+double salary = Math.round(input * 100.0) / 100.0;
+```
+
+## compare whether 1 date is after the other
+
+https://www.geeksforgeeks.org/date-after-method-in-java/
+
+```dateObject.after(Date specifiedDate)```
+
+## Iterating through list
+
+https://www.geeksforgeeks.org/iterate-through-list-in-java/#:~:text=ListIterator%20is%20an%20iterator%20is,a%20list%20using%20while%20loop.
+
+good reference
+
+可以用while, for, Iterator, forEach, for String: myList
+
+List operations:
+https://docs.oracle.com/javase/8/docs/api/java/util/List.html
+
+https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html
+
+## Integer vs int
+
+https://stackoverflow.com/questions/22777568/why-int-cant-be-compared-to-null-but-integer-can-be-compared-to-null
+
+
+## Java实例类嵌套List的例子
+
+https://blog.csdn.net/mws666/article/details/104028381
+
+嵌套类已经掌握。
+
+https://blog.csdn.net/qq_36098284/article/details/79936335
+
+一次性传递多个list。
+
+查看test4：list<list<String>>的初始化
+
+## Java switch statement
+
+https://www.geeksforgeeks.org/switch-statement-in-java/
+
+## double to int
+
+int x = (int) 4.97542;
+
+https://stackoverflow.com/questions/10280520/convert-double-to-int-rounded-down
+
+## String Comparison returning false while they have same value
+
+https://stackoverflow.com/questions/56352667/string-comparison-returning-false-while-they-have-same-value
+
+```java
+s1.equals(s2)
+```
+
+
 

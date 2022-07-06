@@ -1,8 +1,22 @@
+# JDBC（JavaDataBase Connectivity）就是Java数据库连接，说白了就是用Java语言来操作数据库。
+
+mybatis是一个持久层ORM框架。它内部封装了jdbc，可以通过xml或注解完成ORM映射关系配置。使开发更简洁，更高效。使用Mybatis，可以让开发者只需要关注sql语句本身，简化JDBC操作，不需要在关注加载驱动、创建连接、处理SQL语句等繁杂的过程。下面来看一下通过Mybatis又是如何连接并操作数据库的。
+
+## mybatis
+
+http://lidol.top/frame/3359/
+
+用户数据库的增改删查+测试
+
 ## dynamic select
 
 https://stackoverflow.com/questions/19500425/dynamic-select-sql-statements-with-mybatis
 
 https://mybatis.org/mybatis-3/dynamic-sql.html
+
+https://mybatis.org/mybatis-3/sqlmap-xml.html
+
+https://mybatis.org/mybatis-dynamic-sql/docs/insert.html
 
 Good example of many sql statements
 
@@ -268,4 +282,279 @@ SELECT COUNT(*),QUARTER(CreateTime) FROM t_voipchannelrecord WHERE YEAR(CreateTi
 ```sql
 SELECT COUNT(*),YEAR(CreateTime) FROM t_voipchannelrecord  GROUP BY YEAR(CreateTime) 
 ```
+
+## java.lang.ClassNotFoundException: Cannot find class
+
+https://www.cnblogs.com/biehongli/p/13416457.html
+
+```xml
+<resultMap id="userMap" type="com.bie.shiro.po.User">
+ 9         <id property="uid" column="uid"></id>
+10         <result property="username" column="username"></result>
+11         <result property="password" column="password"></result>
+12         <collection property="roleSet" ofType="com.bie.shiro.po.Role">
+13             <id property="rid" column="rid"></id>
+14             <result property="rname" column="rname"></result>
+15             <collection property="permissionSet" ofType="com.bie.shiro.po.Permission">
+16                 <id property="pid" column="pid"></id>
+17                 <result property="pname" column="pname"></result>
+18                 <result property="url" column="url"></result>
+19             </collection>
+20         </collection>
+21     </resultMap>
+
+<select id="findByUsername" parameterType="string" resultMap="userMap">
+30        SELECT
+```
+
+## Mybatis的java对象名和数据库表名不同
+
+https://codeleading.com/article/61962794982/
+
+```xml
+<resultMap type="com.struts.entity.User" id="UserList">
+	<!-- 主键 -->
+	<id column="userid" jdbcType="VARCHAR" property="userid" />
+	<result column="username" jdbcType="VARCHAR" property="username" />
+	<result column="registDate" jdbcType="VARCHAR" property="registDate" />
+	<result column="password" jdbcType="VARCHAR" property="password" />
+</resultMap>
+```
+用resultMap进行映射
+
+## 从object到mapper xml详细的解说
+
+https://blog.51cto.com/u_15127575/4089599
+
+很完整
+
+## select,insert,update中用if
+
+https://www.modb.pro/db/137958
+
+不错。各种if的使用方法。
+
+## MyBatis - Mapped Statements collection already contains value for
+
+https://stackoverflow.com/questions/37085803/mybatis-mapped-statements-collection-already-contains-value-for
+
+If you have the same method name, then mybatis throws the Mapped Statements collection already contains value error message. So the solution is to have different method names for different mapper statements even if the method signatures are different.
+
+## More examples
+
+https://www.alibabacloud.com/blog/mybatis-with-a-more-fluent-experience_598062
+
+## inserting true/false - data type
+
+https://stackoverflow.com/questions/3709507/storing-boolean-values-in-sql
+
+Use the bit data type instead for your column.
+
+## SQL selecting rows by most recent date with two unique columns
+
+https://stackoverflow.com/questions/189213/sql-selecting-rows-by-most-recent-date-with-two-unique-columns
+
+```sql
+SELECT
+  CHARGEID,
+  CHARGETYPE,
+  MAX(SERVICEMONTH) AS "MostRecentServiceMonth"
+FROM INVOICE
+GROUP BY CHARGEID, CHARGETYPE
+```
+
+## Slf4j获取日志对象(Logger)的实现分析
+
+https://blog.csdn.net/Revivedsun/article/details/85208866
+
+```java
+ Logger logger = LoggerFactory.getLogger(Main.class);
+```
+
+## select with limit
+
+https://www.w3schools.com/sql/sql_ref_select_top.asp
+
+```sql
+SELECT * FROM Customers
+LIMIT 3;
+```
+
+## Inserting with trimming
+
+https://programmer.group/the-default-value-of-mysql-field-inserted-by-mybatis-does-not-take-effect.html
+
+```sql
+<sql id="blogColumns">  
+    <trim suffixOverrides=",">  
+        <if test="title != null">title,</if>  
+        <if test="author != null">author,</if>  
+        <if test="content != null">content</if>  
+    </trim>  
+</sql>  
+  
+<sql id="blogValues">  
+    <trim suffixOverrides=",">  
+        <if test="title != null">#{title},</if>  
+        <if test="author != null">#{author},</if>  
+        <if test="content != null">#{content}</if>  
+    </trim>  
+</sql>  
+  
+<insert id="addOneBlog" parameterType="Blog">  
+    insert into blog(<include refid="blogColumns"/>)  
+    values (<include refid="blogValues"/>)  
+</insert>  
+```
+
+## if-statement in mybatis insert query
+
+https://stackoverflow.com/questions/51519368/if-statement-in-mybatis-insert-query
+
+```sql
+INSERT INTO table (
+      ... other columns ...,
+      <if test="i9TB1000_CODRIC != null">
+          I9TB1000_CODRIC,
+      </if>
+      <if test="i9TB1000_PROGRIC != null">
+      I9TB1000_PROGRIC,
+      </if>
+      ... other columns ...
+) VALUES (
+     ... values ...
+)
+```
+
+## insert with trim
+
+https://programmer.group/the-default-value-of-mysql-field-inserted-by-mybatis-does-not-take-effect.html
+
+```sql
+<sql id="blogColumns">  
+    <trim suffixOverrides=",">  
+        <if test="title != null">title,</if>  
+        <if test="author != null">author,</if>  
+        <if test="content != null">content</if>  
+    </trim>  
+</sql>  
+  
+<sql id="blogValues">  
+    <trim suffixOverrides=",">  
+        <if test="title != null">#{title},</if>  
+        <if test="author != null">#{author},</if>  
+        <if test="content != null">#{content}</if>  
+    </trim>  
+</sql>  
+  
+<insert id="addOneBlog" parameterType="Blog">  
+    insert into blog(<include refid="blogColumns"/>)  
+    values (<include refid="blogValues"/>)  
+</insert>  
+```
+
+## adding null test
+
+https://stackoverflow.com/questions/55861001/mybatis-update-if-a-field-in-the-source-object-is-not-null
+
+```sql
+<if test='description != null'>
+```
+
+## Insert null in a database
+
+https://stackoverflow.com/questions/16191296/insert-null-in-a-database
+
+```xml
+<settings>
+        <setting name="jdbcTypeForNull" value="NULL" />
+</settings>
+```
+
+## Updating multiple database rows in Spring - Mybatis
+
+https://stackoverflow.com/questions/35480461/updating-multiple-database-rows-in-spring-mybatis
+
+```xml
+<!--mapper xml-->
+<update id="updateEmployeeTrips" parameterType="java.util.List">
+    <foreach collection="list" item="employeeTrips" index="index" separator=";">
+        update employee_trips set pickup_drop_time = #{employeeTrips.pickupTime} where id = #{employeeTrips.id}
+    </foreach>
+</update>
+
+```
+
+```java
+// mapper java
+updateEmployeeTrips(List<employeeTrip> employeeTripList)
+```
+
+## sql sample
+
+https://github.com/mybatis/mybatis-3/wiki/FAQ#what-is-the-difference-between--and-
+
+very comprehensive.
+covers wildcard, String/Integer parameter type, retrieving value of autogenerated key, batch insert. There is no need to use $. Only # needed.
+
+## MySQLSyntaxErrorException: Mybatis :Bulk update query using foreach
+
+https://stackoverflow.com/questions/28673237/mysqlsyntaxerrorexception-mybatis-bulk-update-query-using-foreach
+
+Solution: 
+**enable the multiple update in the jdbc url. You should append the parameter allowMultiQueries=true into the url of jdbc**
+
+### Alternatively
+
+https://developpaper.com/mybatis-batch-updates-in-three-ways/
+
+```xml
+<update id="updateBatch"  parameterType="java.util.List">  
+    <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+        update tableName
+        <set>
+            name=${item.name},
+            name2=${item.name2}
+        </set>
+        where id = ${item.id}
+    </foreach>      
+</update>
+```
+
+**But by default, SQL statements in Mybatis mapping files do not support execution of multiple SQL statements ending with “;”. So you need to add & allow MultiQueries = true to the URL that connects Mysql to execute.**
+
+### JDBC URL setting Allowmultiqueries to True and false when the underlying processing mechanism is studied
+
+https://topic.alibabacloud.com/a/jdbc-url-setting-allowmultiqueries-to-true-and-false-when-the-underlying-processing-mechanism-is-studied_8_8_30095746.html
+
+```sql
+Allowmultiqueriesallow the use of '; ' to delimit multiple queries during one statement (True/false), defaults to ' false ', And does not affect the Addbatch () and ExecuteBatch () methods, which instead rely on RewriteBatchStatements.Default:false Since version:3.1.1
+```
+
+### Alternatively
+
+https://blog.karatos.in/a?ID=01800-f2db2faf-a5bb-4625-9430-3d68cfd96186
+
+similar to above links.
+
+```xml
+<update id="xxxx" parameterType="java.util.List">
+        <foreach collection="list" item="user" separator=";">
+            update t_xxx_user set is_default = #{user.isDefault}
+            where id = #{user.id}
+        </foreach>
+    </update>
+```
+
+```yml
+jdbc:mysql://xxxx:3306/hc_insurance_center?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true
+```
+
+## ExecutorException: Error getting generated key or setting result to parameter object
+
+https://blog.csdn.net/weixin_44299027/article/details/105528727
+
+useGeneratedKeys = true （使用生成的主键） 这个表示插入数据之后返回一个自增的主键id给你对应实体类中的主键属性。通过这个设置可以解决在主键自增的情况下通过实体的getter方法获取主键（当然还需要keyproperty指明数据库中返回的主键id给实体类中的哪个属性）。
+keyproperty = 主键，这样就可以解决在主键自增的情况下获取主键。
+
 
