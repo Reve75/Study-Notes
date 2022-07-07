@@ -332,3 +332,107 @@ public @ResponseBody  Representation authenticate(@PathVariable("email") String 
 
 ```
 
+## 微信小程序开发【前端+后端（java）】
+
+https://blog.csdn.net/zwb19940216/article/details/81023191
+
+@RestController与@Controller注解的区别@RestController相当于两个注解，它能实现将后端得到的数据在前端页面（网页）中以json串的形式传递。而微信小程序与后台之间的数据传递就是以json报文的形式传递。所以这就是选择springboot框架开发小程序后端的主要原因之一。
+
+比较全面的springboot小程序开发
+
+### SpringBoot+mysql搭建微信小程序后台（2）连接数据库和后端代码
+
+https://blog.csdn.net/m0_48878393/article/details/119083346
+
+这两个链接很不错，参考了不少
+
+### 小程序的简单后台搭建（基于SpringBoot+Mybatis）
+
+http://t.csdn.cn/ckNRd
+
+https://blog.csdn.net/qq_21537671/article/details/98847630?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-8-98847630-blog-113735330.pc_relevant_antiscanv2&spm=1001.2101.3001.4242.5&utm_relevant_index=11
+
+挺详细，不错
+
+## springboot+mybatis整合
+
+https://blog.csdn.net/huangwei18351/article/details/85235500
+
+不错
+
+## idea使用maven搭建mybatis项目连接mysql完整版
+
+https://blog.csdn.net/weixin_44835979/article/details/107521273
+
+**非常详细的解释，参考了很多次**
+
+### 在idea中创建maven工程，搭建mybatis框架，完成单表增删改查操作
+
+https://blog.csdn.net/weixin_46136820/article/details/120313464
+
+也很不错，参考了很多
+
+### IDEA创建并配置Spring boot+Mybatis+Maven项目
+
+https://blog.csdn.net/cty_com/article/details/96104078
+
+不错，参考了不少
+
+## SpringBoot项目Mybatis连接MySQL以及前端访问文件配置
+
+https://blog.csdn.net/qq_26012495/article/details/81260120
+
+不错，讲了postman测试
+
+
+## eclipse里面springboot项目和maven module创立
+
+https://juejin.cn/post/6844903910755270670
+
+没有用到
+
+### 也是eclipse
+
+http://www.360doc.com/content/20/1113/20/65840031_945697074.shtml
+
+不少mybatis部分，也不错，有个踩坑总结点不错
+
+### Eclipse SpringBoot+mybatis搭建小程序
+
+https://blog.csdn.net/Adonis_D_Gogh/article/details/79419975
+
+
+## 小程序上基于Springboot+mybatis+mysql实现登陆、注册功能
+
+https://blog.csdn.net/qq_42487559/article/details/104070164
+
+完整注册功能，但是是简单用户名密码
+
+
+## 利用spring自动注入list,map性质
+
+https://blog.51cto.com/u_15257216/2862672
+
+### 例子
+
+https://blog.csdn.net/weixin_39769767/article/details/114134642
+
+### 全面的官方map operations
+
+https://docs.oracle.com/javase/8/docs/api/java/util/Map.html
+
+https://docs.oracle.com/javase/tutorial/collections/interfaces/map.html
+
+## springboot中使用requestBody注解接收json串
+
+https://blog.csdn.net/taiguolaotu/article/details/105390113
+
+```java
+
+@RequestMapping(path = "/addOrgposNoparametercheck", method = RequestMethod.POST, produces ="application/json;charset=UTF-8" )
+    public int addOrgposNoparametercheck(@RequestBody SysOrgpos sysOrgpos)  {
+        return sysOrgposService.addOrgposNoparametercheck(sysOrgpos);
+    }
+```
+
+**@RequestBody SysOrgpos sysOrgpos 这种形式会将JSON字符串中的值赋予SysOrgpos 中对应的属性上,需要注意的是，JSON字符串中的key必须对应user中的属性名，否则是请求不过去的。**

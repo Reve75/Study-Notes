@@ -146,3 +146,5 @@ https://futurestud.io/tutorials/gson-mapping-of-arrays-and-lists-of-objects
 
 Comprehensive. includes lists and lists of lists and getting type of lists.
 
+## 
+

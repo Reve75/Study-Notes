@@ -216,5 +216,73 @@ https://stackoverflow.com/questions/56352667/string-comparison-returning-false-w
 s1.equals(s2)
 ```
 
+## Java 8 date add n seconds to current date example program
 
+http://www.instanceofjava.com/2018/02/java-8-date-add-seconds-example.html
+
+Java 8 providing java.time.LocalDateTime class.
+By using plusSeconds() method of  LocalDateTime we can add seconds to date.
+By Using minusSeconds() method we can substract  seconds from java date.
+
+```java
+public class addSecondsToDate {
+
+ public static void main(String[] args) {
+  
+  //create data using java 8 LocalDateTime 
+  LocalDateTime datetime= LocalDateTime.now();
+  
+  System.out.println("Before: "+datetime);
+  //add seconds by using plusSeconds(seconds) method
+  datetime=datetime.plusSeconds(12);
+  System.out.println("After: "+datetime);
+ }
+```
+
+### another method
+
+https://stackoverflow.com/questions/1655357/how-do-i-say-5-seconds-from-now-in-java
+
+```java
+now.setTime(now.getTime() + 5000);
+
+DateTime later = DateTime.now().plusSeconds( 5 );
+
+new Date( System.currentTimeMillis() + 5000L)
+```
+
+
+## convert date to string
+
+https://stackoverflow.com/questions/2942857/how-to-convert-current-date-into-string-in-java
+
+```java
+String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+
+Calendar cal = Calendar.getInstance();
+SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
+return sdf.format(cal.getTime());
+```
+
+## Arraylist operations
+
+https://www.geeksforgeeks.org/arraylist-in-java/
+
+## Iterating through a map
+
+https://www.geeksforgeeks.org/traverse-through-a-hashmap-in-java/
+
+### Storing and Retrieving ArrayList values from hashmap
+
+https://stackoverflow.com/questions/19541582/storing-and-retrieving-arraylist-values-from-hashmap
+
+Map<ArrayList<>>
+
+### Store Duplicate Keys in a Map in Java
+
+https://www.baeldung.com/java-map-duplicate-keys
+
+## convert a Timestamp into either Date or DateTime object
+
+https://stackoverflow.com/questions/7492423/how-can-i-convert-a-timestamp-into-either-date-or-datetime-object
 

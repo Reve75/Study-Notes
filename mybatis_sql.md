@@ -558,3 +558,123 @@ useGeneratedKeys = true （使用生成的主键） 这个表示插入数据之�
 keyproperty = 主键，这样就可以解决在主键自增的情况下获取主键。
 
 
+## Spring Boot整合MyBatis
+
+http://c.biancheng.net/spring_boot/mybatis.html
+
+不错
+
+## SpringBoot集成Mybatis
+
+https://zhuanlan.zhihu.com/p/160901686
+
+不错
+
+## Spring Boot中使用MyBatis详解
+
+https://blog.csdn.net/m0_46696320/article/details/105472191
+
+不错
+
+## mybatis 和 jdbc两种方法操作数据库
+
+http://lidol.top/frame/3359/
+
+不错
+
+## pass multiple parameters and use them
+
+https://stackoverflow.com/questions/24968088/how-can-i-pass-multiple-parameters-and-use-them
+
+Do not specify parameterType but use @Param annotation on parameters in mapper:
+
+```java
+@Mapper
+public interface MyMapper {
+
+    void update(@Param("a") A a, @Param("b") B b);
+
+    ...
+}
+```
+
+```xml
+<update id="update" > 
+   UPDATE SOME WHERE x=#{a.x} AND y=#{b.y}
+</update>
+```
+
+e.g.
+
+```java
+void mapCategoryAndPage(@Param("categoryLocalId") Long categoryLocalId, @Param("pageLocalId") Long localId);
+
+```
+
+```xml
+<insert id="mapCategoryAndPage" parameterType="map">
+    INSERT INTO
+        category_page_mapping (
+            page_local_id,
+            category_local_id)
+    VALUES
+        (#{pageLocalId},
+         #{categoryLocalId});
+</insert>
+```
+
+## Add seconds to current date using Calendar.add() method in Java
+
+https://www.tutorialspoint.com/add-seconds-to-current-date-using-calendar-add-method-in-java
+
+```java
+Calendar calendar = Calendar.getInstance();
+      System.out.println("Current Date = " + calendar.getTime());
+      
+      
+      calendar.add(Calendar.SECOND, 15);
+```
+
+## How to get the current date/time in Java
+
+https://stackoverflow.com/questions/5175728/how-to-get-the-current-date-time-in-java#:~:text=on%20this%20post.-,Use%3A,getInstance().
+
+```java
+String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+```
+
+```java
+DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+Calendar cal = Calendar.getInstance();
+System.out.println(dateFormat.format(cal.getTime()));
+```
+
+https://www.tutorialspoint.com/add-seconds-to-current-date-using-calendar-add-method-in-java
+
+```java
+Calendar calendar = Calendar.getInstance();
+
+calendar.add(Calendar.SECOND, 15);
+```
+
+## retrieve values from hashmap inside a hashmap
+
+https://stackoverflow.com/questions/49925837/to-retrieve-values-from-hashmap-inside-a-hashmap
+
+```java
+
+Map<String, Object> innerMap = outerMap.get("marks");
+
+for (String key : innerMap.keySet()) {
+    Object value = innerMap.get(key);
+    
+    
+}
+```
+
+## Field 'Id' doesn't have a default value解决方法
+
+https://blog.csdn.net/qq_38974634/article/details/81039660
+
+设置为auto-increment
+
