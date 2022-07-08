@@ -146,5 +146,110 @@ https://futurestud.io/tutorials/gson-mapping-of-arrays-and-lists-of-objects
 
 Comprehensive. includes lists and lists of lists and getting type of lists.
 
-## 
+## Convert JSON object to Java object using Gson library in Jav
+
+https://www.tutorialspoint.com/convert-json-object-to-java-object-using-gson-library-in-java#:~:text=A%20Gson%20is%20a%20json,JSON%20object%20to%20Java%20Object.
+
+## Gson – How to convert Java object to / from JSON
+
+https://mkyong.com/java/how-do-convert-java-object-to-from-json-format-gson-api/
+
+comprehensive
+
+## HTTP POST using JSON in Java
+
+https://stackoverflow.com/questions/7181534/http-post-using-json-in-java
+
+不错的httpclient例子
+
+## JAVA中实现API对接时POST请求
+
+https://bbs.huaweicloud.com/blogs/320456
+
+## Gson: Directly convert String to JsonObject (no POJO)
+
+https://stackoverflow.com/questions/4110664/gson-directly-convert-string-to-jsonobject-no-pojo
+
+好像是用的另一个stackoverflow答案的方法
+
+## 使用Gson将Java对象转换为JSON
+
+https://blog.csdn.net/wuseyukui/article/details/13775449
+
+https://vinxikk.github.io/2017/10/02/java/gson-1/#Gson%E4%BD%BF%E7%94%A8
+
+不错
+
+### Gson – How to convert Java object to / from JSON
+
+https://mkyong.com/java/how-do-convert-java-object-to-from-json-format-gson-api/
+
+### Gson：直接将String转换为JsonObject（无POJO）
+
+https://java-askforanswer-com.translate.goog/gsonzhijiejiangstringzhuanhuanweijsonobjectwupojo.html?_x_tr_sch=http&_x_tr_sl=zh-CN&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=sc
+
+### Convert JSON to a Map Using Gson
+
+https://www.baeldung.com/gson-json-to-map
+
+https://stackoverflow.com/questions/2779251/how-can-i-convert-json-to-a-hashmap-using-gson
+
+```java
+import java.lang.reflect.Type;
+import com.google.gson.reflect.TypeToken;
+
+Type type = new TypeToken<Map<String, String>>(){}.getType();
+Map<String, String> myMap = gson.fromJson("{'k1':'apple','k2':'orange'}", type);
+
+```
+
+```java
+Gson gson = new Gson(); 
+String json = "{\"k1\":\"v1\",\"k2\":\"v2\"}";
+Map<String,Object> map = new HashMap<String,Object>();
+map = (Map<String,Object>) gson.fromJson(json, map.getClass());
+```
+
+## HttpClient 的 PoolingHttpClientConnectionManager
+
+https://blog.51cto.com/u_1472521/5117888
+
+## Java HttpClient Post多层json格式参数
+
+https://blog.csdn.net/liubo1991_java/article/details/51360361
+
+## Http框架封装
+
+https://jxiaow.gitee.io/posts/84a009ed/
+
+没仔细看
+
+## gson无法正常将时间戳转化成date
+
+https://blog.csdn.net/Booleaning/article/details/88343464
+
+参考了这个链接,按照以下方法写的
+
+```java
+		@Test
+    public void fun1(){
+
+        GsonBuilder builder = new GsonBuilder();
+
+        // Register an adapter to manage the date types as long values
+        builder.registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
+            public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+                return new Date(json.getAsJsonPrimitive().getAsLong());
+            }
+        });
+
+        Gson gson = builder.create();
+
+
+        String str = "{\"name\":\"yjt\",\"date\":\"1552012460277\"}";
+        Person person = gson.fromJson(str,Person.class);
+        log.info("{}", person);
+    }
+
+```
 

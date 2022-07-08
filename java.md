@@ -286,3 +286,11 @@ https://www.baeldung.com/java-map-duplicate-keys
 
 https://stackoverflow.com/questions/7492423/how-can-i-convert-a-timestamp-into-either-date-or-datetime-object
 
+## declare HashMap in global and add values into it only for the first time
+
+https://stackoverflow.com/questions/33775273/how-to-declare-hashmap-in-global-and-add-values-into-it-only-for-the-first-time
+
+```java
+static final Map<String, String> PRODUCT_LIST;
+```
+

@@ -678,3 +678,23 @@ https://blog.csdn.net/qq_38974634/article/details/81039660
 
 设置为auto-increment
 
+## MyBatis(二)：SqlSessionFactory和SqlSession
+
+https://zhuanlan.zhihu.com/p/352851043#:~:text=1.SqlSessionFactory%E6%98%AFMyBatis%E7%9A%84,%E7%BC%96%E8%AF%91%E5%90%8E%E7%9A%84%E5%86%85%E5%AD%98%E9%95%9C%E5%83%8F%E3%80%82
+
+### MyBatis常用对象SqlSessionFactory和SqlSession介绍和运用
+
+https://blog.csdn.net/u013412772/article/details/73648537
+
+### 简单探讨spring整合mybatis时sqlSession不需要释放关闭的问题
+
+https://blog.csdn.net/RicardoDing/article/details/79899686
+
+### mybatis-spring整合详情介绍
+
+https://blog.csdn.net/J080624/article/details/119111549
+
+### Springboot整合mybatis
+
+https://juejin.cn/post/6844904185402490887
+

@@ -436,3 +436,41 @@ https://blog.csdn.net/taiguolaotu/article/details/105390113
 ```
 
 **@RequestBody SysOrgpos sysOrgpos 这种形式会将JSON字符串中的值赋予SysOrgpos 中对应的属性上,需要注意的是，JSON字符串中的key必须对应user中的属性名，否则是请求不过去的。**
+
+## 为什么main方法启动类SpringApplication需要在项目根目录，以及标注的意义
+
+https://cloud.tencent.com/developer/article/1639231#:~:text=%E5%90%AF%E5%8A%A8%E7%B1%BB%E8%87%AA%E8%BA%AB%E6%98%AF%E4%B8%80%E4%B8%AA,%E4%BD%BF%E7%94%A8%E8%BF%99%E4%B8%89%E4%B8%AA%E6%B3%A8%E8%A7%A3%E3%80%82
+
+@SpringBootConfiguration，@ComonentScan，@EnableAutoConfiguration
+
+## Springboot整合微信小程序实现登录与增删改查
+
+https://blog.51cto.com/u_15466961/4837849
+
+非常完整的例子，很不错
+
+### SpringBoot+MyBatis搭建迷你小程序
+
+https://codeantenna.com/a/yn0nFtRVug
+
+不错
+
+## 微信小程序的springboot后端写法，包括发送订阅消息
+
+https://tuojinhui.github.io/wechat/ma/MiniApp.html#%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%8E%B7%E5%8F%96phonenumber-openid-nickname-avatarurl
+
+不错
+
+## 跨域问题和options
+
+https://blog.csdn.net/socct_yj/article/details/107233627
+
+SpringBoot里也好办，在application.yml里配置
+
+```xml
+# 允许预检请求
+spring:
+  mvc:
+    dispatch-options-request: true
+```
+
