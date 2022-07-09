@@ -52,3 +52,18 @@ git remote -v
 git add -A
 git commit -m "message"
 git push -u origin main
+
+
+## Homebrew failing to install - fatal: not in a git directory
+
+https://stackoverflow.com/questions/60852461/homebrew-failing-to-install-fatal-not-in-a-git-directory
+
+very useful, followed the steps here and solved my problem.
+
+
+## How do I show my global Git configuration?
+
+https://stackoverflow.com/questions/12254076/how-do-i-show-my-global-git-configuration
+
+git config --global --list
+
